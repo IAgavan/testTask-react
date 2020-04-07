@@ -1,38 +1,289 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  display: flex;
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
+  padding: 10px 0;
+  font-size: 0.75rem;
+}
+
+main {
+  display: flex;
+  font-size: 0.7rem;
+  max-width: 580px;
+}
+
+aside {
+  font-size: 0.7rem;
+  line-height: 1rem;
+  padding-left: 30px;
+  width: 190px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form div {
+  display: flex;
+  align-items: baseline;
+  margin: 15px 0;
+}
+
+.surname,
+.name {
+  margin-bottom: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.surname-lat {
+  margin-bottom: 0;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 0 140px;
+  padding: 1px;
+  max-width: 290px;
+}
+
+.family-status {
+  margin: 0;
+}
+
+label {
+  width: 140px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  min-width: 290px;
+  height: 1.5rem;
+}
+
+input+span,
+select+span {
+  position: relative;
+
+}
+
+span p {
+  color: red;
+  font-style: italic;
+  position: absolute;
+  top: -20px;
+  left: 5px;
+}
+
+input:not([type="checkbox"]):valid+span::after,
+select:valid+span::after {
+  position: absolute;
+  content: "✓";
+  left: -10px;
+  top: -10px;
+}
+
+select {
+  border-color: silver;
+  height: 1.5rem;
+  margin-right: 10px;
+}
+
+.form-main {
+  padding-left: 20px;
+  padding-right: 130px;
+  display: flex;
+  flex-direction: column;
+}
+
+.paper-effect {
+  margin: 10px auto;
+  background: linear-gradient(#dbb0b0, #f1e5e5, #fce4e3, #fce4e3);
+  position: relative;
+}
+
+.paper-effect:before,
+.paper-effect:after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+  width: 50px;
+  top: 10px;
+  max-width: 300px;
+  -webkit-box-shadow: -15px 10px 30px #777;
+  -moz-box-shadow: -15px 10px 30px #777;
+  box-shadow: -15px 10px 30px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.paper-effect:after {
+  right: 25px;
+  left: auto;
+  -webkit-box-shadow: 15px 10px 30px #777;
+  -moz-box-shadow: 15px 10px 30px #777;
+  box-shadow: 15px 10px 30px #777;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+
+.contacts-header {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-left: 140px;
+  margin-bottom: 0;
+}
+
+.email {
+  margin-top: 0;
+}
+
+.form-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(rgb(200, 198, 211), rgb(182, 178, 204));
 }
 
-.App-link {
-  color: #61dafb;
+.form-footer .checkbox {
+  margin-left: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 20px;
+  width: 250px;
+  height: 50px;
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  color: rgb(52, 83, 52);
+  background-color: rgb(89, 155, 89);
+  -webkit-box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.5),
+    inset 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.5),
+    inset 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.5),
+    inset 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  color: rgb(160, 162, 163);
+  background-color: #ccc;
+  -webkit-box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 20px 10px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 20px 10px rgba(255, 255, 255, 0.75);
+  box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 20px 10px rgba(255, 255, 255, 0.75);
+}
+
+button:active {
+  font-size: 1.35rem;
+  -webkit-box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 21px 0px rgba(0, 0, 0, 0.3),
+    inset 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 800px) {
+  .container {
+    max-width: 720px;
   }
-  to {
-    transform: rotate(360deg);
+
+  aside {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    padding: 0;
+    justify-content: center;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  header {
+    font-size: 0.6rem;
+    text-align: center;
+    padding: 5px;
+
+  }
+
+  .form-main {
+    padding: 0px;
+    margin: auto;
+  }
+
+  form div:not(.select) {
+    flex-direction: column;
+  }
+
+  input:not([type="checkbox"]):valid+span::after,
+  select:valid+span::after {
+    left: -10px;
+    top: -20px;
+  }
+
+  span p {
+    color: red;
+    font-style: italic;
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: 100vw;
+  }
+
+  .checkbox {
+    margin: 0;
+  }
+
+  .contacts-header {
+    margin-left: 0px;
+  }
+
+  button {
+    margin-left: 0;
   }
 }
