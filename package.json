@@ -1,0 +1,32 @@
+{
+  "name": "testtasks",
+  "version": "1.0.0",
+  "description": "form",
+  "main": "index.html",
+  "scripts": {
+    "server": "node ./server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IAgavan/testTasks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IAgavan/testTasks/issues"
+  },
+  "homepage": "https://github.com/IAgavan/testTasks#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "http-server": "^0.12.1",
+    "prettier": "^2.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
