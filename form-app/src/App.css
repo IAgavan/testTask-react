@@ -94,6 +94,11 @@ span p {
   top: -20px;
   left: 5px;
 }
+input:not([type="checkbox"]):valid+span>p,
+select:valid+span>p {
+  display: none;
+}
+
 
 input:not([type="checkbox"]):valid+span::after,
 select:valid+span::after {

@@ -14,7 +14,18 @@ import FamilyStatus from './form_components/FamilyStatus';
 import Education from './form_components/Education';
 
 export class Form extends Component {
-    state = {
+    getStateFromStorage() {
+        let form
+        try {
+            form = JSON.parse(window.sessionStorage.getItem('state'));
+        } catch (e) {
+            form = null;
+        }
+        return form
+
+    }
+
+    state = this.getStateFromStorage() || {
         surname: '',
         oldSurname: {
             value: '',
@@ -31,6 +42,10 @@ export class Form extends Component {
         education: '',
         tel: '',
         email: '',
+
+        isSurnameLatChanged: false,
+        isNameLatChanged: false,
+
         isBirthdayDataLoaded: false,
         isEducationDataLoaded: false,
         isFamilyStatusDataLoaded: false,
@@ -38,25 +53,54 @@ export class Form extends Component {
         isValid: false
     }
 
+
+
     change = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
             isValid: this.formEl.checkValidity()
-        });
-        
+        }, () => { window.sessionStorage.setItem('state', JSON.stringify(this.state)) })
+
     }
+
+
 
     render() {
         return (
-            <form className="paper-effect" ref={form => this.formEl = form} >
+            <form className="paper-effect"
+                ref={form => this.formEl = form}
+                onSubmit={() => {
+                    window.sessionStorage.clear();
+                    this.setState(this.state)
+                }}
+            >
                 <div className="form-main ">
-                    <Surname change={this.change} surname={this.state.surname} />
-                    <OldSurnameToggle oldSurname={this.state.oldSurname} setState={p => this.setState(p)} />
+                    <Surname
+                        change={this.change}
+                        surname={this.state.surname}
+                        setParentState={this.state.isSurnameLatChanged ? null : e => this.setState(e)}
+                    />
+                    <OldSurnameToggle
+                        oldSurname={this.state.oldSurname}
+                        setState={p => this.setState(p)}
+                    />
                     <OldSurname oldSurname={this.state.oldSurname} setState={p => this.setState(p)} />
-                    <Name change={this.change} name={this.state.name} />
-                    <FatherName change={this.change} fahterName={this.state.fatherName} />
-                    <SurnameLat change={this.change} surnameLat={this.state.surnameLat} />
-                    <NameLat change={this.change} nameLat={this.state.nameLat} />
+                    <Name
+                        change={this.change}
+                        name={this.state.name}
+                        setParentState={this.state.isNameLatChanged ? null : e => this.setState(e)}
+                    />
+                    <FatherName change={this.change} fatherName={this.state.fatherName} />
+                    <SurnameLat
+                        change={this.change}
+                        surnameLat={this.state.surnameLat}
+                        setState={p => this.setState(p)}
+                    />
+                    <NameLat
+                        change={this.change}
+                        nameLat={this.state.nameLat}
+                        setState={p => this.setState(p)}
+                    />
                     <Birthday
                         change={this.change}
                         birthdayDate={this.state.birthdayDate}
@@ -78,7 +122,7 @@ export class Form extends Component {
                     <Tel tel={this.state.tel} change={this.change} />
                     <Email email={this.state.email} change={this.change} />
                 </div>
-                <FormFooter change={this.change} isValid={this.state.isValid}/>
+                <FormFooter change={this.change} isValid={this.state.isValid} />
             </form>
         )
     }

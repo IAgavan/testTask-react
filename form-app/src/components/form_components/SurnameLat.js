@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 export class SurnameLat extends Component {
+    state = { p:false }
     render() {
         return (
             <div className="surname-lat input">
@@ -11,9 +12,14 @@ export class SurnameLat extends Component {
                     pattern="[A-Za-z]+"
                     title="Пожалуйста, используйте латинские буквы"
                     value={this.props.surnameLat}
-                    onChange={e => this.props.change(e)}
+                    onChange={e => {
+                        this.setState({ p: true })
+                        this.props.change(e)
+                        this.props.setState({ isSurnameLatChanged: true })
+                    }
+                    }
                 />
-                <span><p>Пожалуйста, используйте латинские буквы</p></span>
+                <span>{this.state.p? <p>Пожалуйста, используйте латинские буквы</p>: null}</span>
             </div>
         )
     }

@@ -5,18 +5,21 @@ import Aside from './components/Aside';
 
 import './App.css';
 
+
+
 export class App extends Component {
+  
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Header />
         <div className="container">
           <main>
-            <Form />
+            <Form form={this.form}/>
           </main>
           <Aside />
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

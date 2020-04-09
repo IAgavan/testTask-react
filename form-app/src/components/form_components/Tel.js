@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 export class Tel extends Component {
+    state = { p: false }
     render() {
         return (
             <div className="tel input">
@@ -10,9 +11,12 @@ export class Tel extends Component {
                     required
                     pattern="\+[0-9-]+"
                     value={this.props.tel}
-                    onChange={e => this.props.change(e)}
+                    onChange={e => {
+                        this.setState({ p: true })
+                        this.props.change(e)
+                    }}
                 />
-                <span><p>Пожалуйста, используйте формат (+.........)</p></span>
+                <span>{this.state.p ? <p>Пожалуйста, используйте формат (+.........)</p> : null}</span>
             </div>
         )
     }

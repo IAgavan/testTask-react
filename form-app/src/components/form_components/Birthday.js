@@ -7,7 +7,7 @@ export class Birthday extends Component {
         month: [],
         year: []
     }
-
+    
     componentDidMount = () => {
         axios.get("http://localhost:2000/birth-day.json")
             .then(res => this.setState(res.data))
@@ -18,12 +18,15 @@ export class Birthday extends Component {
     addOptions = (param, name) => {
         let options = []
         for (let i = 0; i < param.length; i += 1) {
-            const option = React.createElement('option', { value: `${param[i]}`}, `${param[i]}`);
+            const option = React.createElement('option', { value: `${param[i]}` }, `${param[i]}`);
             options[i] = option
         }
-        return React.createElement('select', {name:name, required:true,
-            value:`${this.props[name]}`,
-            onChange:e => this.props.change(e)}, ...options)
+        return React.createElement('select', {
+            name: name, required: true,
+            value: `${this.props[name]}`,
+            onChange: e => this.props.change(e),
+            ref: select => this.selectEl = select
+        }, ...options)
     }
 
 
@@ -36,11 +39,11 @@ export class Birthday extends Component {
                     {this.addOptions(this.state.day, 'birthdayDate')}
 
                     <span></span>
-                    
+
                     {this.addOptions(this.state.month, 'birthdayMonth')}
 
                     <span></span>
-                    
+
                     {this.addOptions(this.state.year, 'birthdayYear')}
 
                     <span><p>Выберете дату</p></span>
